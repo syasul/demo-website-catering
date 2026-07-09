@@ -1,0 +1,336 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    /* Brand colors */
+    --color-forest: #1F2E22;
+    --color-paper: #F5EFDF;
+    --color-gold: #AD8A4E;
+    --color-gold-light: #D4AA6A;
+    --color-maroon: #6E2A2A;
+    --color-sage: #56705C;
+    --color-stempel: #3B3350;
+
+    /* Glass system */
+    --glass-bg: rgba(255,255,255,0.07);
+    --glass-bg-hover: rgba(255,255,255,0.12);
+    --glass-border: rgba(255,255,255,0.13);
+    --glass-border-gold: rgba(173,138,78,0.35);
+    --glass-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    --glass-glow-gold: 0 0 28px rgba(173,138,78,0.25);
+    --glass-glow-maroon: 0 0 28px rgba(110,42,42,0.3);
+
+    /* Fonts */
+    --font-display: 'Poppins', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    --font-utility: 'IBM Plex Mono', monospace;
+}
+
+/* ──────────────────────────────────────
+   Base
+────────────────────────────────────── */
+body {
+    background-color: #0d1b10;
+    color: #f0ece0;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* ──────────────────────────────────────
+   Glassmorphism Card
+────────────────────────────────────── */
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--glass-shadow);
+}
+
+.glass-card-gold {
+    background: rgba(173,138,78,0.08);
+    border: 1px solid var(--glass-border-gold);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--glass-glow-gold);
+}
+
+.glass-card-dark {
+    background: rgba(13,27,16,0.6);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--glass-shadow);
+}
+
+/* ──────────────────────────────────────
+   Glass Buttons
+────────────────────────────────────── */
+.glass-btn {
+    background: rgba(173,138,78,0.15);
+    border: 1px solid var(--glass-border-gold);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+}
+
+.glass-btn:hover {
+    background: rgba(173,138,78,0.28);
+    box-shadow: var(--glass-glow-gold);
+}
+
+.glass-btn-primary {
+    background: rgba(173,138,78,0.25);
+    border: 1px solid var(--glass-border-gold);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+    color: #D4AA6A;
+}
+
+.glass-btn-primary:hover {
+    background: rgba(173,138,78,0.4);
+    box-shadow: 0 0 28px rgba(173,138,78,0.35);
+    color: #fff;
+}
+
+/* ──────────────────────────────────────
+   Text Glow
+────────────────────────────────────── */
+.text-glow-gold {
+    text-shadow: 0 0 20px rgba(173,138,78,0.6);
+}
+
+.text-glow-white {
+    text-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+/* ──────────────────────────────────────
+   Input Glass Style
+────────────────────────────────────── */
+.glass-input {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #f0ece0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.glass-input:focus {
+    outline: none;
+    border-color: rgba(173,138,78,0.6);
+    box-shadow: 0 0 0 2px rgba(173,138,78,0.15);
+}
+
+.glass-input::placeholder {
+    color: rgba(240,236,224,0.35);
+}
+
+/* ──────────────────────────────────────
+   Animated Blob (via Framer Motion, but fallback CSS too)
+────────────────────────────────────── */
+.blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+/* ──────────────────────────────────────
+   Perforated receipt border
+────────────────────────────────────── */
+.border-dashed-tear {
+    border-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='4' viewBox='0 0 12 4'%3e%3cpath d='M0 4c2 0 2-4 4-4s2 4 4 4 2-4 4-4v4z' fill='%23AD8A4E'/%3e%3c/svg%3e") 0 0 100% repeat;
+}
+
+/* ──────────────────────────────────────
+   Animations
+────────────────────────────────────── */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.animate-slide-down {
+    animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Skeleton loading */
+.skeleton {
+    background: rgba(173,138,78,0.07);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+}
+
+/* Range input styling */
+input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    background: rgba(255,255,255,0.15);
+    height: 6px;
+    border-radius: 9999px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--color-gold);
+    border-radius: 50%;
+    margin-top: -7px;
+    box-shadow: 0 0 8px rgba(173,138,78,0.5);
+    transition: box-shadow 0.2s;
+}
+input[type=range]::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 16px rgba(173,138,78,0.8);
+}
+input[type=range]::-moz-range-track {
+    background: rgba(255,255,255,0.15);
+    height: 6px;
+    border-radius: 9999px;
+}
+input[type=range]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--color-gold);
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 8px rgba(173,138,78,0.5);
+}
+
+/* Checkbox glass */
+.glass-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(173,138,78,0.4);
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+.glass-checkbox:checked {
+    background: rgba(173,138,78,0.5);
+    border-color: var(--color-gold);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23fff' stroke-width='2.5' d='M3 8l3.5 3.5 6-7'/%3e%3c/svg%3e");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* ──────────────────────────────────────
+   Admin App Overrides (Dark Glassmorphism)
+────────────────────────────────────── */
+#admin-app .bg-paper {
+    background: rgba(13,27,16,0.5) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    border-radius: 1rem !important;
+    color: #f0ece0 !important;
+}
+
+#admin-app .text-forest {
+    color: #f0ece0 !important;
+}
+
+#admin-app .bg-forest {
+    background: rgba(173,138,78,0.15) !important;
+    border-color: rgba(173,138,78,0.3) !important;
+    color: #f0ece0 !important;
+}
+
+#admin-app .text-paper {
+    color: #f0ece0 !important;
+}
+
+#admin-app .border-forest\/10, #admin-app .border-forest\/20 {
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+#admin-app .bg-forest\/5, #admin-app .bg-forest\/10 {
+    background: rgba(255,255,255,0.05) !important;
+}
+
+#admin-app .bg-gray-50, #admin-app .bg-gray-100 {
+    background: rgba(255,255,255,0.05) !important;
+}
+
+#admin-app .border-gray-200, #admin-app .border-gray-300 {
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+#admin-app .text-gray-500, #admin-app .text-gray-600, #admin-app .text-gray-700, #admin-app .text-gray-800, #admin-app .text-gray-900 {
+    color: rgba(255,255,255,0.7) !important;
+}
+
+#admin-app th, #admin-app td {
+    border-color: rgba(255,255,255,0.05) !important;
+}
+
+#admin-app th {
+    background: rgba(255,255,255,0.02) !important;
+    color: rgba(255,255,255,0.5) !important;
+}
+
+#admin-app select, #admin-app input, #admin-app textarea {
+    background: rgba(0,0,0,0.2) !important;
+    border-color: rgba(255,255,255,0.15) !important;
+    color: #fff !important;
+    border-radius: 0.5rem !important;
+}
+
+#admin-app select option {
+    background: #0d1b10 !important;
+    color: #fff !important;
+}
+
+#admin-app .text-forest\/50, #admin-app .text-forest\/60, #admin-app .text-forest\/70 {
+    color: rgba(255,255,255,0.5) !important;
+}
+
+#admin-app button.bg-forest.text-paper {
+    background: rgba(173,138,78,0.2) !important;
+    color: #AD8A4E !important;
+    border: 1px solid rgba(173,138,78,0.4) !important;
+    border-radius: 0.5rem !important;
+}
+
+#admin-app button.bg-forest.text-paper:hover {
+    background: rgba(173,138,78,0.4) !important;
+    color: #fff !important;
+}
+
+#admin-app .divide-y > * {
+    border-color: rgba(255,255,255,0.05) !important;
+}
+
+#admin-app .shadow-sm, #admin-app .shadow-md, #admin-app .shadow-lg {
+    box-shadow: 0 4px 30px rgba(0,0,0,0.2) !important;
+}
