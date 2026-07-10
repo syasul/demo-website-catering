@@ -15,7 +15,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
         'phone',
         'is_active',
     ];
@@ -37,20 +36,5 @@ class User extends Authenticatable
     public function assignedQuotations()
     {
         return $this->hasMany(Quotation::class, 'assigned_to');
-    }
-
-    public function isSuperAdmin(): bool
-    {
-        return $this->role === 'super_admin';
-    }
-
-    public function isAdmin(): bool
-    {
-        return $this->role === 'admin' || $this->role === 'super_admin';
-    }
-
-    public function isFinance(): bool
-    {
-        return $this->role === 'finance' || $this->role === 'super_admin';
     }
 }

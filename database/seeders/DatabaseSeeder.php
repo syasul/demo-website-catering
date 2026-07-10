@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'superadmin@catering.com',
             'password' => Hash::make('password'),
-            'role' => 'super_admin',
             'phone' => '081234567890',
             'is_active' => true,
         ]);
@@ -34,7 +33,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin Operasional',
             'email' => 'admin@catering.com',
             'password' => Hash::make('password'),
-            'role' => 'admin',
             'phone' => '081234567891',
             'is_active' => true,
         ]);
@@ -43,7 +41,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'Finance Staff',
             'email' => 'finance@catering.com',
             'password' => Hash::make('password'),
-            'role' => 'finance',
             'phone' => '081234567892',
             'is_active' => true,
         ]);

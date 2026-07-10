@@ -12,7 +12,6 @@ export const UsersPanel: React.FC = () => {
         name: '',
         email: '',
         password: '',
-        role: 'admin' as any,
         phone: '',
         is_active: true
     });
@@ -55,7 +54,6 @@ export const UsersPanel: React.FC = () => {
                     name: '',
                     email: '',
                     password: '',
-                    role: 'admin',
                     phone: '',
                     is_active: true
                 });
@@ -100,7 +98,7 @@ export const UsersPanel: React.FC = () => {
                 <button 
                     onClick={() => {
                         setSelectedUserId(null);
-                        setForm({ name: '', email: '', password: '', role: 'admin', phone: '', is_active: true });
+                        setForm({ name: '', email: '', password: '', phone: '', is_active: true });
                         setShowForm(true);
                     }}
                     className="bg-forest text-paper hover:bg-gold hover:text-forest px-4 py-2.5 text-xs font-bold uppercase tracking-wider border border-gold flex items-center gap-2"
@@ -117,7 +115,7 @@ export const UsersPanel: React.FC = () => {
                             <th className="p-4">Nama</th>
                             <th className="p-4">Email</th>
                             <th className="p-4">No. HP</th>
-                            <th className="p-4">Hak Akses (Role)</th>
+
                             <th className="p-4">Status</th>
                             <th className="p-4">Aksi</th>
                         </tr>
@@ -128,9 +126,7 @@ export const UsersPanel: React.FC = () => {
                                 <td className="p-4 font-bold">{u.name}</td>
                                 <td className="p-4 font-utility">{u.email}</td>
                                 <td className="p-4 font-utility">{u.phone || '-'}</td>
-                                <td className="p-4 uppercase tracking-wider font-utility text-[9px] text-gold font-bold">
-                                    {u.role.replace('_', ' ')}
-                                </td>
+
                                 <td className="p-4">
                                     <span className={`px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider border ${u.is_active ? 'bg-sage/10 border-sage text-sage' : 'bg-red-50 border-red-200 text-red-500'}`}>
                                         {u.is_active ? 'Aktif' : 'Non-aktif'}
@@ -144,7 +140,6 @@ export const UsersPanel: React.FC = () => {
                                                 name: u.name,
                                                 email: u.email,
                                                 password: '',
-                                                role: u.role,
                                                 phone: u.phone || '',
                                                 is_active: u.is_active
                                             });
@@ -224,19 +219,6 @@ export const UsersPanel: React.FC = () => {
                                         required={!selectedUserId}
                                         className="w-full p-2.5 bg-forest/5 border border-forest/10 focus:outline-none focus:border-gold"
                                     />
-                                </div>
-                                <div className="space-y-1">
-                                    <label className="text-[9px] uppercase font-bold text-forest/60">Hak Akses Role *</label>
-                                    <select 
-                                        value={form.role} 
-                                        onChange={(e) => setForm(prev => ({ ...prev, role: e.target.value as any }))}
-                                        required
-                                        className="w-full p-2.5 bg-forest/5 border border-forest/10 focus:outline-none focus:border-gold font-utility"
-                                    >
-                                        <option value="super_admin">Super Admin</option>
-                                        <option value="admin">Admin Operasional</option>
-                                        <option value="finance">Finance Staff</option>
-                                    </select>
                                 </div>
                             </div>
 

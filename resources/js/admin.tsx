@@ -107,54 +107,51 @@ const AdminApp: React.FC = () => {
 
     if (!authChecked) {
         return (
-            <div className="flex justify-center items-center min-h-screen" style={{ background: '#0d1b10' }}>
+            <div className="flex justify-center items-center min-h-screen bg-gray-50">
                 <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-gold"></div>
             </div>
         );
     }
 
-    // LOGIN SCREEN (Dark Glassmorphism)
+    // LOGIN SCREEN (Light Theme)
     if (!user) {
         return (
-            <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden" style={{ background: '#0d1b10' }}>
-                <AnimatedBlob color="#AD8A4E" size={400} x="-5%" y="10%" delay={0} opacity={0.15} />
-                <AnimatedBlob color="#1F2E22" size={350} x="60%" y="40%" delay={2} opacity={0.3} />
-
+            <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden bg-gray-50">
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
                     className="max-w-md w-full relative z-10"
                 >
-                    <GlassCard variant="gold" className="p-8 md:p-10" glow>
+                    <div className="bg-white p-8 md:p-10 shadow-xl rounded-2xl border border-gray-100">
                         <div className="text-center mb-8">
                             <div className="w-14 h-14 border-2 border-gold/60 rounded-full flex items-center justify-center font-display text-gold text-2xl font-bold mx-auto mb-4 bg-gold/10">
                                 G
                             </div>
-                            <h2 className="font-display text-2xl font-bold text-white uppercase tracking-widest text-glow-gold">ADMIN PORTAL</h2>
-                            <p className="text-xs font-utility text-white/50 mt-2">Garden Ledger Catering CRM</p>
+                            <h2 className="font-display text-2xl font-bold text-gray-800 uppercase tracking-widest">ADMIN PORTAL</h2>
+                            <p className="text-xs font-utility text-gray-500 mt-2">Garden Ledger Catering CRM</p>
                         </div>
 
                         <form onSubmit={handleLogin} className="space-y-5">
                             <div className="space-y-1.5">
-                                <label className="text-[10px] uppercase tracking-wider font-bold text-white/50 block font-utility">Email Address</label>
+                                <label className="text-[10px] uppercase tracking-wider font-bold text-gray-500 block font-utility">Email Address</label>
                                 <input 
                                     type="email" 
                                     value={loginEmail}
                                     onChange={(e) => setLoginEmail(e.target.value)}
                                     required
-                                    className="glass-input w-full p-3 rounded-xl text-sm"
+                                    className="w-full p-3 rounded-xl text-sm border border-gray-200 bg-gray-50 text-gray-800 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold"
                                     placeholder="admin@catering.com"
                                 />
                             </div>
                             <div className="space-y-1.5">
-                                <label className="text-[10px] uppercase tracking-wider font-bold text-white/50 block font-utility">Password</label>
+                                <label className="text-[10px] uppercase tracking-wider font-bold text-gray-500 block font-utility">Password</label>
                                 <input 
                                     type="password" 
                                     value={loginPassword}
                                     onChange={(e) => setLoginPassword(e.target.value)}
                                     required
-                                    className="glass-input w-full p-3 rounded-xl text-sm"
+                                    className="w-full p-3 rounded-xl text-sm border border-gray-200 bg-gray-50 text-gray-800 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold"
                                     placeholder="••••••••"
                                 />
                             </div>
@@ -173,111 +170,96 @@ const AdminApp: React.FC = () => {
                                 )}
                             </AnimatePresence>
 
-                            <GlassButton 
+                            <button 
                                 type="submit" 
-                                variant="primary"
                                 disabled={loginLoading}
-                                className="w-full mt-2"
+                                className="w-full mt-2 bg-gold text-white font-bold tracking-wider py-3 rounded-xl hover:bg-gold-light transition-colors"
                             >
                                 {loginLoading ? 'Memverifikasi...' : 'Sign In'}
-                            </GlassButton>
+                            </button>
                         </form>
-                    </GlassCard>
+                    </div>
                 </motion.div>
             </div>
         );
     }
 
-    // MAIN DASHBOARD LAYOUT (Dark Glassmorphism)
+    // MAIN DASHBOARD LAYOUT (Light Theme)
     return (
-        <div className="flex h-screen overflow-hidden" style={{ background: '#0d1b10' }}>
+        <div className="flex h-screen overflow-hidden bg-gray-50">
             
             {/* NAVIGATION SIDEBAR */}
-            <aside className="w-64 glass-card-dark border-r border-white/10 flex flex-col justify-between shrink-0 font-sans z-20 relative">
+            <aside className="w-64 bg-white shadow-sm border-r border-gray-200 flex flex-col justify-between shrink-0 font-sans z-20 relative">
                 <div>
-                    <div className="p-6 border-b border-white/5 flex items-center gap-3">
-                        <div className="w-9 h-9 border border-gold/60 rounded-full flex items-center justify-center font-display text-gold text-lg font-bold bg-gold/5 shadow-[0_0_15px_rgba(173,138,78,0.2)]">
+                    <div className="p-6 border-b border-gray-100 flex items-center gap-3">
+                        <div className="w-9 h-9 border border-gold/60 rounded-full flex items-center justify-center font-display text-gold text-lg font-bold bg-gold/5">
                             G
                         </div>
                         <div>
-                            <span className="font-display text-sm font-bold tracking-wide block text-gold leading-none text-glow-gold">GARDEN LEDGER</span>
-                            <span className="text-[9px] uppercase tracking-widest text-white/40 font-utility mt-1 block">CRM Panel</span>
+                            <span className="font-display text-sm font-bold tracking-wide block text-gray-800 leading-none">GARDEN LEDGER</span>
+                            <span className="text-[9px] uppercase tracking-widest text-gray-400 font-utility mt-1 block">CRM Panel</span>
                         </div>
                     </div>
 
-                    <div className="p-5 border-b border-white/5 text-xs font-utility text-white/60 flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gold">
+                    <div className="p-5 border-b border-gray-100 text-xs font-utility text-gray-600 flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
                             <Users size={14} />
                         </div>
                         <div>
-                            <div className="font-bold text-white text-xs">{user.name}</div>
-                            <div className="text-[9px] uppercase tracking-wider text-gold/70">{user.role.replace('_', ' ')}</div>
+                            <div className="font-bold text-gray-800 text-xs">{user.name}</div>
                         </div>
                     </div>
 
                     <nav className="p-4 space-y-1.5">
                         <button 
                             onClick={() => setActivePanel('dashboard')}
-                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'dashboard' ? 'bg-gold/10 text-gold shadow-[inset_0_0_0_1px_rgba(173,138,78,0.3)]' : 'text-white/50 hover:text-white hover:bg-white/5'}`}
+                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'dashboard' ? 'bg-gold/10 text-gold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'}`}
                         >
                             <LayoutDashboard size={16} /> Dashboard
                         </button>
                         <button 
                             onClick={() => setActivePanel('leads')}
-                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'leads' ? 'bg-gold/10 text-gold shadow-[inset_0_0_0_1px_rgba(173,138,78,0.3)]' : 'text-white/50 hover:text-white hover:bg-white/5'}`}
+                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'leads' ? 'bg-gold/10 text-gold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'}`}
                         >
                             <FolderKanban size={16} /> CRM Pipeline
                         </button>
-                        
-                        {(user.role === 'super_admin' || user.role === 'admin' || user.role === 'finance') && (
-                            <>
-                                <button 
-                                    onClick={() => setActivePanel('packages')}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'packages' ? 'bg-gold/10 text-gold shadow-[inset_0_0_0_1px_rgba(173,138,78,0.3)]' : 'text-white/50 hover:text-white hover:bg-white/5'}`}
-                                >
-                                    <ChefHat size={16} /> Paket & Menu
-                                </button>
-                                <button 
-                                    onClick={() => setActivePanel('pricing')}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'pricing' ? 'bg-gold/10 text-gold shadow-[inset_0_0_0_1px_rgba(173,138,78,0.3)]' : 'text-white/50 hover:text-white hover:bg-white/5'}`}
-                                >
-                                    <Percent size={16} /> Harga & Diskon
-                                </button>
-                            </>
-                        )}
-
-                        {(user.role === 'super_admin' || user.role === 'admin') && (
-                            <button 
-                                onClick={() => setActivePanel('settings')}
-                                className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'settings' ? 'bg-gold/10 text-gold shadow-[inset_0_0_0_1px_rgba(173,138,78,0.3)]' : 'text-white/50 hover:text-white hover:bg-white/5'}`}
-                            >
-                                <SettingsIcon size={16} /> Pengaturan
-                            </button>
-                        )}
-
-                        {user.role === 'super_admin' && (
-                            <>
-                                <button 
-                                    onClick={() => setActivePanel('users')}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'users' ? 'bg-gold/10 text-gold shadow-[inset_0_0_0_1px_rgba(173,138,78,0.3)]' : 'text-white/50 hover:text-white hover:bg-white/5'}`}
-                                >
-                                    <Users size={16} /> Manajemen Staff
-                                </button>
-                                <button 
-                                    onClick={() => setActivePanel('logs')}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'logs' ? 'bg-gold/10 text-gold shadow-[inset_0_0_0_1px_rgba(173,138,78,0.3)]' : 'text-white/50 hover:text-white hover:bg-white/5'}`}
-                                >
-                                    <ShieldAlert size={16} /> Audit Trail
-                                </button>
-                            </>
-                        )}
+                        <button 
+                            onClick={() => setActivePanel('packages')}
+                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'packages' ? 'bg-gold/10 text-gold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'}`}
+                        >
+                            <ChefHat size={16} /> Paket & Menu
+                        </button>
+                        <button 
+                            onClick={() => setActivePanel('pricing')}
+                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'pricing' ? 'bg-gold/10 text-gold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'}`}
+                        >
+                            <Percent size={16} /> Harga & Diskon
+                        </button>
+                        <button 
+                            onClick={() => setActivePanel('settings')}
+                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'settings' ? 'bg-gold/10 text-gold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'}`}
+                        >
+                            <SettingsIcon size={16} /> Pengaturan
+                        </button>
+                        <button 
+                            onClick={() => setActivePanel('users')}
+                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'users' ? 'bg-gold/10 text-gold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'}`}
+                        >
+                            <Users size={16} /> Manajemen Staff
+                        </button>
+                        <button 
+                            onClick={() => setActivePanel('logs')}
+                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all rounded-xl ${activePanel === 'logs' ? 'bg-gold/10 text-gold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'}`}
+                        >
+                            <ShieldAlert size={16} /> Audit Trail
+                        </button>
                     </nav>
                 </div>
 
-                <div className="p-4 border-t border-white/5">
+                <div className="p-4 border-t border-gray-100">
                     <button 
                         onClick={handleLogout}
-                        className="w-full flex items-center justify-center gap-2 glass-card border border-red-500/20 text-red-400 hover:bg-red-500/10 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-colors"
+                        className="w-full flex items-center justify-center gap-2 border border-red-200 text-red-500 hover:bg-red-50 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-colors"
                     >
                         <LogOut size={14} /> Keluar
                     </button>
@@ -285,10 +267,7 @@ const AdminApp: React.FC = () => {
             </aside>
 
             {/* MAIN DATA PANELS (Content Area) */}
-            <main className="flex-grow overflow-y-auto max-w-[calc(100vw-256px)] relative">
-                {/* Background Blobs for main content area */}
-                <AnimatedBlob color="#AD8A4E" size={500} x="80%" y="-10%" delay={0} opacity={0.07} />
-                <AnimatedBlob color="#1F2E22" size={600} x="-10%" y="60%" delay={2} opacity={0.15} />
+            <main className="flex-grow overflow-y-auto max-w-[calc(100vw-256px)] relative bg-gray-50 text-gray-900">
 
                 <div className="p-8 relative z-10 min-h-full">
                     <AnimatePresence mode="wait">

@@ -208,7 +208,7 @@ export const PackagesPanel: React.FC<{ user: User }> = ({ user }) => {
         }
     };
 
-    const isReadOnly = user.role === 'finance';
+    const isReadOnly = false;
 
     if (loading) {
         return (

@@ -11,8 +11,6 @@ export const DashboardPanel: React.FC<{ user: User }> = ({ user }) => {
     const [popularPackages, setPopularPackages] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
-    const isFinanceOrSuperAdmin = user.role === 'finance' || user.role === 'super_admin';
-
     useEffect(() => {
         fetchDashboardData();
     }, []);
@@ -59,46 +57,46 @@ export const DashboardPanel: React.FC<{ user: User }> = ({ user }) => {
             {/* Stats Overview */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <GlassCard className="p-5" hover>
-                    <span className="text-[10px] uppercase tracking-widest text-white/40 font-utility block leading-none">Lead Baru (Minggu Ini)</span>
-                    <span className="font-display text-3xl font-bold text-white block mt-3">{stats.stats.new_leads_this_week}</span>
+                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-utility block leading-none">Lead Baru (Minggu Ini)</span>
+                    <span className="font-display text-3xl font-bold text-gray-900 block mt-3">{stats.stats.new_leads_this_week}</span>
                 </GlassCard>
                 <GlassCard className="p-5" hover>
-                    <span className="text-[10px] uppercase tracking-widest text-white/40 font-utility block leading-none">Nilai Pipeline Aktif</span>
-                    <span className="font-utility text-xl font-bold text-gold block mt-3 text-glow-gold">
-                        Rp {isFinanceOrSuperAdmin ? stats.stats.pipeline_value.toLocaleString('id-ID') : 'Rp ***'}
+                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-utility block leading-none">Nilai Pipeline Aktif</span>
+                    <span className="font-utility text-xl font-bold text-gold block mt-3">
+                        Rp {stats.stats.pipeline_value.toLocaleString('id-ID')}
                     </span>
                 </GlassCard>
                 <GlassCard className="p-5" hover>
-                    <span className="text-[10px] uppercase tracking-widest text-white/40 font-utility block leading-none">Deal Bulan Ini</span>
-                    <span className="font-display text-3xl font-bold text-emerald-400 block mt-3">{stats.stats.deals_this_month}</span>
+                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-utility block leading-none">Deal Bulan Ini</span>
+                    <span className="font-display text-3xl font-bold text-emerald-500 block mt-3">{stats.stats.deals_this_month}</span>
                 </GlassCard>
                 <GlassCard className="p-5" hover>
-                    <span className="text-[10px] uppercase tracking-widest text-white/40 font-utility block leading-none">Omset Deal (Bulan Ini)</span>
-                    <span className="font-utility text-xl font-bold text-white block mt-3">
-                        Rp {isFinanceOrSuperAdmin ? stats.stats.deals_value_this_month.toLocaleString('id-ID') : 'Rp ***'}
+                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-utility block leading-none">Omset Deal (Bulan Ini)</span>
+                    <span className="font-utility text-xl font-bold text-gray-900 block mt-3">
+                        Rp {stats.stats.deals_value_this_month.toLocaleString('id-ID')}
                     </span>
                 </GlassCard>
             </div>
 
             {/* URGENT ALERTS WIDGET */}
             {stats.urgent_leads.length > 0 && (
-                <div className="glass-card border-red-500/30 bg-red-500/10 p-5 shadow-sm space-y-3 rounded-2xl">
-                    <div className="flex items-center gap-2 text-red-400 font-bold text-sm">
+                <div className="bg-red-50 border border-red-200 p-5 shadow-sm space-y-3 rounded-2xl">
+                    <div className="flex items-center gap-2 text-red-600 font-bold text-sm">
                         <AlertCircle size={18} />
                         <h4>Perlu Tindak Lanjut Segera (Tanpa Aktivitas &gt; 2 Hari)</h4>
                     </div>
-                    <div className="divide-y divide-red-500/20">
+                    <div className="divide-y divide-red-100">
                         {stats.urgent_leads.slice(0, 3).map((lead: Lead) => (
                             <div key={lead.id} className="py-2.5 flex justify-between items-center text-xs">
                                 <div>
-                                    <span className="font-bold text-red-300">{lead.customer_name}</span>
-                                    <span className="text-red-300/70 ml-2">({lead.package_name_snapshot} — {lead.pax} pax)</span>
+                                    <span className="font-bold text-red-700">{lead.customer_name}</span>
+                                    <span className="text-red-500 ml-2">({lead.package_name_snapshot} — {lead.pax} pax)</span>
                                 </div>
                                 <div className="flex items-center gap-4">
-                                    <span className="text-[10px] font-utility bg-red-500/20 text-red-300 px-2 py-0.5 rounded-md uppercase border border-red-500/30">
+                                    <span className="text-[10px] font-utility bg-red-100 text-red-600 px-2 py-0.5 rounded-md uppercase">
                                         Status: {lead.status}
                                     </span>
-                                    <span className="text-red-400 font-medium font-utility">
+                                    <span className="text-red-600 font-medium font-utility">
                                         Assigned: {lead.assigned_user?.name || 'Unassigned'}
                                     </span>
                                 </div>
@@ -113,22 +111,22 @@ export const DashboardPanel: React.FC<{ user: User }> = ({ user }) => {
                 
                 {/* Line Chart: Leads Trend */}
                 <GlassCard className="p-6">
-                    <h3 className="text-xs uppercase tracking-wider font-bold text-gold mb-6 flex items-center gap-2 text-glow-gold">
+                    <h3 className="text-xs uppercase tracking-wider font-bold text-gray-800 mb-6 flex items-center gap-2">
                         <TrendingUp size={16} />
                         Tren Pertumbuhan Lead per Bulan
                     </h3>
                     <div className="h-80">
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={monthlyLeads}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                                <XAxis dataKey="month" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10, fontFamily: 'Poppins' }} />
-                                <YAxis tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10, fontFamily: 'IBM Plex Mono' }} />
-                                <Tooltip wrapperStyle={{ fontFamily: 'Poppins', fontSize: 12 }} contentStyle={{ backgroundColor: 'rgba(13,27,16,0.9)', borderColor: 'rgba(173,138,78,0.3)', color: '#fff' }} />
-                                <Legend wrapperStyle={{ fontSize: 11, color: '#fff' }} />
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                <XAxis dataKey="month" tick={{ fill: '#6b7280', fontSize: 10, fontFamily: 'Poppins' }} />
+                                <YAxis tick={{ fill: '#6b7280', fontSize: 10, fontFamily: 'IBM Plex Mono' }} />
+                                <Tooltip wrapperStyle={{ fontFamily: 'Poppins', fontSize: 12 }} contentStyle={{ backgroundColor: '#fff', borderColor: '#e5e7eb', color: '#1f2937' }} />
+                                <Legend wrapperStyle={{ fontSize: 11, color: '#374151' }} />
                                 <Line type="monotone" dataKey="web" stroke="#ff7e67" strokeWidth={2} name="Web Calculator" />
                                 <Line type="monotone" dataKey="whatsapp" stroke="#25D366" strokeWidth={2} name="WhatsApp CS" />
                                 <Line type="monotone" dataKey="manual" stroke="#AD8A4E" strokeWidth={2} name="Manual Admin" />
-                                <Line type="monotone" dataKey="total" stroke="#fff" strokeWidth={3} name="Total Leads" />
+                                <Line type="monotone" dataKey="total" stroke="#374151" strokeWidth={3} name="Total Leads" />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
@@ -136,18 +134,18 @@ export const DashboardPanel: React.FC<{ user: User }> = ({ user }) => {
 
                 {/* Bar Chart: Simulations vs Closed Deals */}
                 <GlassCard className="p-6">
-                    <h3 className="text-xs uppercase tracking-wider font-bold text-gold mb-6 flex items-center gap-2 text-glow-gold">
+                    <h3 className="text-xs uppercase tracking-wider font-bold text-gray-800 mb-6 flex items-center gap-2">
                         <BarChart3 size={16} />
                         Paket Terpopuler (Simulasi vs Closing)
                     </h3>
                     <div className="h-80">
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart data={popularPackages}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                                <XAxis dataKey="name" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10, fontFamily: 'Poppins' }} />
-                                <YAxis tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10, fontFamily: 'IBM Plex Mono' }} />
-                                <Tooltip wrapperStyle={{ fontFamily: 'Poppins', fontSize: 12 }} contentStyle={{ backgroundColor: 'rgba(13,27,16,0.9)', borderColor: 'rgba(173,138,78,0.3)', color: '#fff' }} />
-                                <Legend wrapperStyle={{ fontSize: 11, color: '#fff' }} />
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                <XAxis dataKey="name" tick={{ fill: '#6b7280', fontSize: 10, fontFamily: 'Poppins' }} />
+                                <YAxis tick={{ fill: '#6b7280', fontSize: 10, fontFamily: 'IBM Plex Mono' }} />
+                                <Tooltip wrapperStyle={{ fontFamily: 'Poppins', fontSize: 12 }} contentStyle={{ backgroundColor: '#fff', borderColor: '#e5e7eb', color: '#1f2937' }} />
+                                <Legend wrapperStyle={{ fontSize: 11, color: '#374151' }} />
                                 <Bar dataKey="simulations" fill="#AD8A4E" name="Simulasi" />
                                 <Bar dataKey="deals" fill="#4ade80" name="Deal Closing" />
                             </BarChart>

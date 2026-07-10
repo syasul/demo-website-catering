@@ -19,21 +19,10 @@ export const GlassCard: React.FC<GlassCardProps> = ({
     hover = false,
     onClick,
 }) => {
-    const variantClass = {
-        default: 'glass-card',
-        gold: 'glass-card-gold',
-        dark: 'glass-card-dark',
-    }[variant];
-
-    const glowStyle = glow
-        ? { boxShadow: '0 0 32px rgba(173,138,78,0.2), 0 8px 32px rgba(0,0,0,0.35)' }
-        : undefined;
-
     return (
         <motion.div
-            className={`rounded-2xl ${variantClass} ${className}`}
-            style={glowStyle}
-            whileHover={hover ? { y: -4, boxShadow: '0 0 40px rgba(173,138,78,0.25), 0 16px 48px rgba(0,0,0,0.4)' } : undefined}
+            className={`rounded-2xl bg-white border border-gray-200 shadow-sm ${className}`}
+            whileHover={hover ? { y: -4, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)' } : undefined}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             onClick={onClick}
         >

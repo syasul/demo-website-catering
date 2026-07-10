@@ -20,7 +20,6 @@ class AdminUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'role' => 'required|in:super_admin,admin,finance',
             'phone' => 'nullable|string|max:20',
             'is_active' => 'required|boolean',
         ]);

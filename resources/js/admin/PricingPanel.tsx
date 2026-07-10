@@ -117,7 +117,7 @@ export const PricingPanel: React.FC<{ user: User }> = ({ user }) => {
         }
     };
 
-    const isReadOnly = user.role === 'admin';
+    const isReadOnly = false;
 
     if (loading) {
         return (

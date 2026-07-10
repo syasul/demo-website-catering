@@ -35,43 +35,39 @@ Route::prefix('admin')->middleware(['auth:sanctum'])->group(function () {
     // CRM Leads
     Route::get('leads', [AdminLeadController::class, 'index']);
     Route::get('leads/{id}', [AdminLeadController::class, 'show']);
-    Route::patch('leads/{id}/status', [AdminLeadController::class, 'updateStatus'])->middleware('role:admin');
-    Route::patch('leads/{id}/assign', [AdminLeadController::class, 'assign'])->middleware('role:admin');
-    Route::post('leads/{id}/activities', [AdminLeadController::class, 'addActivity'])->middleware('role:admin');
+    Route::patch('leads/{id}/status', [AdminLeadController::class, 'updateStatus']);
+    Route::patch('leads/{id}/assign', [AdminLeadController::class, 'assign']);
+    Route::post('leads/{id}/activities', [AdminLeadController::class, 'addActivity']);
 
     // Packages, Menus, Addons, and Pricing Tiers Management
-    Route::get('packages', [AdminCateringController::class, 'listPackages'])->middleware('role:admin,finance');
-    Route::get('menu-items', [AdminCateringController::class, 'listMenuItems'])->middleware('role:admin,finance');
-    Route::get('addons', [AdminCateringController::class, 'listAddons'])->middleware('role:admin,finance');
-    Route::get('categories', [AdminCateringController::class, 'listCategories'])->middleware('role:admin,finance');
-    Route::get('pricing-tiers', [AdminPricingTierController::class, 'index'])->middleware('role:admin,finance');
-    Route::post('pricing-tiers/preview', [AdminPricingTierController::class, 'preview'])->middleware('role:admin,finance');
+    Route::get('packages', [AdminCateringController::class, 'listPackages']);
+    Route::get('menu-items', [AdminCateringController::class, 'listMenuItems']);
+    Route::get('addons', [AdminCateringController::class, 'listAddons']);
+    Route::get('categories', [AdminCateringController::class, 'listCategories']);
+    Route::get('pricing-tiers', [AdminPricingTierController::class, 'index']);
+    Route::post('pricing-tiers/preview', [AdminPricingTierController::class, 'preview']);
 
-    // Pricing Tiers write operations restricted to finance/super_admin
-    Route::middleware('role:finance')->group(function () {
-        Route::post('pricing-tiers', [AdminPricingTierController::class, 'store']);
-        Route::put('pricing-tiers/{id}', [AdminPricingTierController::class, 'update']);
-        Route::delete('pricing-tiers/{id}', [AdminPricingTierController::class, 'destroy']);
-    });
+    // Pricing Tiers write operations
+    Route::post('pricing-tiers', [AdminPricingTierController::class, 'store']);
+    Route::put('pricing-tiers/{id}', [AdminPricingTierController::class, 'update']);
+    Route::delete('pricing-tiers/{id}', [AdminPricingTierController::class, 'destroy']);
 
-    // Write operations restricted to admin
-    Route::middleware('role:admin')->group(function () {
-        Route::post('packages', [AdminCateringController::class, 'storePackage']);
-        Route::put('packages/{id}', [AdminCateringController::class, 'updatePackage']);
-        Route::delete('packages/{id}', [AdminCateringController::class, 'destroyPackage']);
-        Route::post('packages/{id}/duplicate', [AdminCateringController::class, 'duplicatePackage']);
+    // Write operations
+    Route::post('packages', [AdminCateringController::class, 'storePackage']);
+    Route::put('packages/{id}', [AdminCateringController::class, 'updatePackage']);
+    Route::delete('packages/{id}', [AdminCateringController::class, 'destroyPackage']);
+    Route::post('packages/{id}/duplicate', [AdminCateringController::class, 'duplicatePackage']);
 
-        Route::post('menu-items', [AdminCateringController::class, 'storeMenuItem']);
-        Route::put('menu-items/{id}', [AdminCateringController::class, 'updateMenuItem']);
-        Route::delete('menu-items/{id}', [AdminCateringController::class, 'destroyMenuItem']);
+    Route::post('menu-items', [AdminCateringController::class, 'storeMenuItem']);
+    Route::put('menu-items/{id}', [AdminCateringController::class, 'updateMenuItem']);
+    Route::delete('menu-items/{id}', [AdminCateringController::class, 'destroyMenuItem']);
 
-        Route::post('addons', [AdminCateringController::class, 'storeAddon']);
-        Route::put('addons/{id}', [AdminCateringController::class, 'updateAddon']);
-        Route::delete('addons/{id}', [AdminCateringController::class, 'destroyAddon']);
-    });
+    Route::post('addons', [AdminCateringController::class, 'storeAddon']);
+    Route::put('addons/{id}', [AdminCateringController::class, 'updateAddon']);
+    Route::delete('addons/{id}', [AdminCateringController::class, 'destroyAddon']);
 
-    // Reports (Dashboard and charts) - restricted for normal admin, open to super_admin and finance
-    Route::prefix('reports')->middleware('role:finance')->group(function () {
+    // Reports (Dashboard and charts)
+    Route::prefix('reports')->group(function () {
         Route::get('dashboard-stats', [AdminReportController::class, 'dashboardStats']);
         Route::get('funnel', [AdminReportController::class, 'funnel']);
         Route::get('popular-packages', [AdminReportController::class, 'popularPackages']);
@@ -79,17 +75,17 @@ Route::prefix('admin')->middleware(['auth:sanctum'])->group(function () {
     });
 
     // Settings
-    Route::get('settings', [AdminSettingController::class, 'getSettings'])->middleware('role:admin,finance');
-    Route::put('settings', [AdminSettingController::class, 'updateSettings'])->middleware('role:admin');
+    Route::get('settings', [AdminSettingController::class, 'getSettings']);
+    Route::put('settings', [AdminSettingController::class, 'updateSettings']);
 
-    // User Management (Super Admin ONLY)
-    Route::prefix('users')->middleware('role:super_admin')->group(function () {
+    // User Management
+    Route::prefix('users')->group(function () {
         Route::get('/', [AdminUserController::class, 'index']);
         Route::post('/', [AdminUserController::class, 'store']);
         Route::put('/{id}', [AdminUserController::class, 'update']);
         Route::delete('/{id}', [AdminUserController::class, 'destroy']);
     });
 
-    // Activity Log (Super Admin ONLY)
-    Route::get('activity-logs', [AdminActivityLogController::class, 'index'])->middleware('role:super_admin');
+    // Activity Log
+    Route::get('activity-logs', [AdminActivityLogController::class, 'index']);
 });
