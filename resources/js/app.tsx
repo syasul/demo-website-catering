@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Mail, MapPin, ArrowRight, Menu, X } from 'lucide-react';
+import { AnimatedBlob } from './components/AnimatedBlob';
 
 // Import modular pages
 import { Home } from './pages/Home';
@@ -69,7 +70,7 @@ const Navbar: React.FC = () => {
 
     const navLinks = [
         { to: '/', label: 'Beranda' },
-        { to: '/paket', label: 'Paket & Estimasi' },
+        { to: '/paket', label: 'Paket Layanan' },
         { to: '/galeri', label: 'Galeri' },
         { to: '/tentang-kami', label: 'Tentang' },
         { to: '/kontak', label: 'Kontak' },
@@ -86,21 +87,13 @@ const Navbar: React.FC = () => {
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
                 {/* Logo */}
                 <Link to="/" className="flex items-center gap-3 group">
-                    <motion.div
-                        className="w-10 h-10 border border-gold/60 rounded-full flex items-center justify-center text-gold text-lg font-bold font-display"
-                        whileHover={{ boxShadow: '0 0 16px rgba(173,138,78,0.5)', borderColor: 'rgba(173,138,78,1)' }}
-                        transition={{ duration: 0.2 }}
-                    >
-                        G
-                    </motion.div>
-                    <div>
-                        <span className="font-display text-base md:text-lg font-bold tracking-wider block leading-none text-gold">
-                            GARDEN LEDGER
-                        </span>
-                        <span className="text-[10px] uppercase tracking-widest text-white/50 font-utility">
-                            Catering & Event
-                        </span>
-                    </div>
+                    <img 
+                        src="/logo.png" 
+                        className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 ${
+                            scrolled ? 'h-14 md:h-16' : 'h-20 md:h-24'
+                        }`} 
+                        alt="Dewandaru Catering Logo" 
+                    />
                 </Link>
 
                 {/* Desktop nav */}
@@ -156,10 +149,10 @@ const Navbar: React.FC = () => {
 // ── Layout
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
-        <div className="flex flex-col min-h-screen" style={{ background: '#0d1b10' }}>
+        <div className="flex flex-col min-h-screen relative overflow-hidden theme-light">
             <Navbar />
 
-            <main className="flex-grow pt-20 md:pt-24">
+            <main className="flex-grow pt-28 md:pt-36 relative z-10">
                 <PageTransition>{children}</PageTransition>
             </main>
 
@@ -183,7 +176,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <footer className="glass-card-dark border-t border-white/8 py-14 px-6 md:px-12 mt-12">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div>
-                        <h3 className="font-display text-xl text-gold font-bold mb-3">Garden Ledger Catering</h3>
+                        <h3 className="font-display text-xl text-gold font-bold mb-3">Dewandaru Catering</h3>
                         <p className="text-sm text-white/55 leading-relaxed">
                             Menghadirkan hidangan prasmanan nusantara yang lezat dan dekorasi premium untuk momen pernikahan, gathering, & khitanan Anda.
                         </p>
@@ -197,7 +190,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                             </li>
                             <li className="flex items-center gap-2.5">
                                 <Mail size={13} className="text-gold/70 shrink-0" />
-                                <span>info@gardencatering.com</span>
+                                <span>info@dewandarucatering.com</span>
                             </li>
                             <li className="flex items-start gap-2.5">
                                 <MapPin size={13} className="text-gold/70 shrink-0 mt-0.5" />
@@ -206,9 +199,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                         </ul>
                     </div>
                     <div>
-                        <h4 className="text-xs font-bold uppercase tracking-widest text-gold/80 mb-4">Estimasi Biaya Mandiri</h4>
+                        <h4 className="text-xs font-bold uppercase tracking-widest text-gold/80 mb-4">Informasi Reservasi</h4>
                         <p className="text-sm text-white/55 leading-relaxed mb-4">
-                            Pilih paket catering dan hitung rincian biaya secara instan — transparan, real-time, tanpa perlu WA admin dulu.
+                            Pilih paket catering prasmanan dan rincian menu pilihan Anda secara instan — transparan, mudah, dan langsung terhubung dengan admin CS.
                         </p>
                         <Link
                             to="/paket"
@@ -219,7 +212,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     </div>
                 </div>
                 <div className="border-t border-white/8 mt-10 pt-6 text-center text-xs text-white/30">
-                    © {new Date().getFullYear()} Garden Ledger Catering. All rights reserved.
+                    © {new Date().getFullYear()} Dewandaru Catering. All rights reserved.
                 </div>
             </footer>
         </div>

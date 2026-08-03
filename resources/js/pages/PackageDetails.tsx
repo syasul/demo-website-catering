@@ -352,36 +352,45 @@ export const PackageDetails: React.FC = () => {
 
                             {/* Step 3 — Customer Form */}
                             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                                <GlassCard className="p-6 md:p-8 space-y-4">
+                                <GlassCard variant="default" className="p-6 md:p-8 space-y-4">
                                     <h3 className="font-semibold text-white text-sm">Informasi Pemesan</h3>
-
-                                    <form onSubmit={handleSubmit} className="space-y-3">
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                            {[
-                                                { name: 'customer_name', label: 'Nama Lengkap *', type: 'text', placeholder: 'Nama Anda' },
-                                                { name: 'customer_phone', label: 'No. WhatsApp *', type: 'text', placeholder: '0812xxx' },
-                                            ].map(f => (
-                                                <div key={f.name} className="space-y-1">
-                                                    <label className="text-[10px] uppercase text-white/40 font-utility tracking-wider">{f.label}</label>
-                                                    <input
-                                                        type={f.type}
-                                                        name={f.name}
-                                                        value={(form as any)[f.name]}
-                                                        onChange={e => {
-                                                            setForm(p => ({ ...p, [f.name]: e.target.value }));
-                                                            if (errors[f.name]) setErrors(p => { const c = { ...p }; delete c[f.name]; return c; });
-                                                        }}
-                                                        placeholder={f.placeholder}
-                                                        className={`glass-input w-full px-3 py-2.5 rounded-xl text-sm ${errors[f.name] ? 'border-red-500/60' : ''}`}
-                                                    />
-                                                    {errors[f.name] && <p className="text-[10px] text-red-400">{errors[f.name]}</p>}
-                                                </div>
-                                            ))}
+                                    <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                            <div className="space-y-1">
+                                                <label className="text-[10px] uppercase text-white/40 font-utility tracking-widest block font-bold">Nama Lengkap *</label>
+                                                <input
+                                                    type="text"
+                                                    name="customer_name"
+                                                    value={form.customer_name}
+                                                    onChange={e => {
+                                                        setForm(p => ({ ...p, customer_name: e.target.value }));
+                                                        if (errors.customer_name) setErrors(p => { const c = { ...p }; delete c.customer_name; return c; });
+                                                    }}
+                                                    placeholder="Nama Anda..."
+                                                    className={`glass-input px-3.5 py-2.5 w-full text-sm placeholder-white/20 ${errors.customer_name ? 'border-red-500/50' : ''}`}
+                                                />
+                                                {errors.customer_name && <p className="text-[9px] text-red-500">{errors.customer_name}</p>}
+                                            </div>
+                                            <div className="space-y-1">
+                                                <label className="text-[10px] uppercase text-white/40 font-utility tracking-widest block font-bold">No. WhatsApp *</label>
+                                                <input
+                                                    type="text"
+                                                    name="customer_phone"
+                                                    value={form.customer_phone}
+                                                    onChange={e => {
+                                                        setForm(p => ({ ...p, customer_phone: e.target.value }));
+                                                        if (errors.customer_phone) setErrors(p => { const c = { ...p }; delete c.customer_phone; return c; });
+                                                    }}
+                                                    placeholder="0812xxx..."
+                                                    className={`glass-input px-3.5 py-2.5 w-full text-sm placeholder-white/20 ${errors.customer_phone ? 'border-red-500/50' : ''}`}
+                                                />
+                                                {errors.customer_phone && <p className="text-[9px] text-red-500">{errors.customer_phone}</p>}
+                                            </div>
                                         </div>
 
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                             <div className="space-y-1">
-                                                <label className="text-[10px] uppercase text-white/40 font-utility tracking-wider">Tanggal Acara *</label>
+                                                <label className="text-[10px] uppercase text-white/40 font-utility tracking-widest block font-bold">Tanggal Acara *</label>
                                                 <input
                                                     type="date"
                                                     name="event_date"
@@ -391,44 +400,44 @@ export const PackageDetails: React.FC = () => {
                                                         setForm(p => ({ ...p, event_date: e.target.value }));
                                                         if (errors.event_date) setErrors(p => { const c = { ...p }; delete c.event_date; return c; });
                                                     }}
-                                                    className={`glass-input w-full px-3 py-2.5 rounded-xl text-sm ${errors.event_date ? 'border-red-500/60' : ''}`}
+                                                    className={`glass-input px-3.5 py-2.5 w-full text-sm placeholder-white/20 ${errors.event_date ? 'border-red-500/50' : ''}`}
                                                 />
-                                                {errors.event_date && <p className="text-[10px] text-red-400">{errors.event_date}</p>}
+                                                {errors.event_date && <p className="text-[9px] text-red-500">{errors.event_date}</p>}
                                             </div>
                                             <div className="space-y-1">
-                                                <label className="text-[10px] uppercase text-white/40 font-utility tracking-wider">Email (opsional)</label>
+                                                <label className="text-[10px] uppercase text-white/40 font-utility tracking-widest block font-bold">Email (opsional)</label>
                                                 <input
                                                     type="email"
                                                     name="customer_email"
                                                     value={form.customer_email}
                                                     onChange={e => setForm(p => ({ ...p, customer_email: e.target.value }))}
-                                                    placeholder="email@contoh.com"
-                                                    className="glass-input w-full px-3 py-2.5 rounded-xl text-sm"
+                                                    placeholder="email@contoh.com..."
+                                                    className="glass-input px-3.5 py-2.5 w-full text-sm placeholder-white/20"
                                                 />
                                             </div>
                                         </div>
 
                                         <div className="space-y-1">
-                                            <label className="text-[10px] uppercase text-white/40 font-utility tracking-wider">Lokasi Acara</label>
+                                            <label className="text-[10px] uppercase text-white/40 font-utility tracking-widest block font-bold">Lokasi Acara</label>
                                             <input
                                                 type="text"
                                                 name="event_location"
                                                 value={form.event_location}
                                                 onChange={e => setForm(p => ({ ...p, event_location: e.target.value }))}
-                                                placeholder="Nama Gedung / Alamat"
-                                                className="glass-input w-full px-3 py-2.5 rounded-xl text-sm"
+                                                placeholder="Nama Gedung / Alamat..."
+                                                className="glass-input px-3.5 py-2.5 w-full text-sm placeholder-white/20"
                                             />
                                         </div>
 
                                         <div className="space-y-1">
-                                            <label className="text-[10px] uppercase text-white/40 font-utility tracking-wider">Catatan Tambahan</label>
+                                            <label className="text-[10px] uppercase text-white/40 font-utility tracking-widest block font-bold">Catatan Tambahan</label>
                                             <textarea
                                                 name="notes"
                                                 value={form.notes}
                                                 onChange={e => setForm(p => ({ ...p, notes: e.target.value }))}
                                                 rows={3}
                                                 placeholder="Request khusus, menu tambahan, dll..."
-                                                className="glass-input w-full px-3 py-2.5 rounded-xl text-sm resize-none"
+                                                className="glass-input px-3.5 py-2.5 w-full text-sm placeholder-white/20 resize-none"
                                             />
                                         </div>
 
@@ -437,9 +446,9 @@ export const PackageDetails: React.FC = () => {
                                             size="lg"
                                             type="submit"
                                             disabled={submitting}
-                                            className="w-full mt-2"
+                                            className="w-full mt-4"
                                         >
-                                            {submitting ? 'Memproses...' : 'Kirim Permintaan Penawaran'}
+                                            {submitting ? 'MEMPROSES...' : 'DAFTARKAN PILIHAN RESERVASI'}
                                         </GlassButton>
                                     </form>
                                 </GlassCard>
@@ -453,10 +462,10 @@ export const PackageDetails: React.FC = () => {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.25, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                             >
-                                <GlassCard variant="gold" className="p-6 md:p-8" glow>
+                                <GlassCard variant="default" className="p-6 md:p-8" hover={false}>
                                     {/* Receipt header */}
-                                    <div className="text-center pb-5 border-b border-white/10">
-                                        <p className="font-display text-lg font-bold text-white tracking-widest uppercase">Nota Estimasi</p>
+                                    <div className="text-center pb-5 border-b border-gray-100">
+                                        <p className="font-display text-lg font-bold text-white tracking-widest uppercase">Summary Pilihan</p>
                                         <p className="text-[10px] text-white/35 font-utility mt-0.5">Garden Ledger Catering Co.</p>
                                     </div>
 
@@ -464,72 +473,38 @@ export const PackageDetails: React.FC = () => {
                                     <div className="py-5 space-y-4 text-sm font-utility">
                                         <div className="flex justify-between items-start gap-4">
                                             <div>
-                                                <p className="font-semibold text-white/80 text-xs">{pkg.name}</p>
-                                                <p className="text-[10px] text-white/35 mt-0.5">
-                                                    {pax} pax × Rp {Number(pkg.price_per_pax).toLocaleString('id-ID')}
-                                                </p>
+                                                <p className="font-semibold text-white/85 text-xs">Paket Layanan</p>
+                                                <p className="text-gold font-display text-xs mt-0.5 font-bold uppercase">{pkg.name}</p>
                                             </div>
-                                            <p className="text-white/70 text-xs shrink-0">Rp {price.packageCost.toLocaleString('id-ID')}</p>
                                         </div>
 
-                                        {price.addonBreakdown.map((item, i) => (
-                                            <div key={i} className="flex justify-between items-start gap-4">
-                                                <div>
-                                                    <p className="text-white/60 text-xs">{item.name}</p>
-                                                    {item.pricing_type === 'per_pax' && (
-                                                        <p className="text-[10px] text-white/30 mt-0.5">
-                                                            {pax} pax × Rp {item.price.toLocaleString('id-ID')}
-                                                        </p>
-                                                    )}
+                                        <div className="flex justify-between items-start gap-4 border-t border-gray-100 pt-3">
+                                            <div>
+                                                <p className="font-semibold text-white/80 text-xs">Jumlah Tamu</p>
+                                                <p className="text-gold font-display text-xs mt-0.5 font-bold uppercase">{pax} Tamu (Pax)</p>
+                                            </div>
+                                        </div>
+
+                                        {price.addonBreakdown.length > 0 && (
+                                            <div className="border-t border-gray-100 pt-3 space-y-2">
+                                                <p className="font-semibold text-white/80 text-xs">Tambahan Add-on</p>
+                                                <div className="space-y-1">
+                                                    {price.addonBreakdown.map((item, i) => (
+                                                        <div key={i} className="text-white/60 text-xs font-display">
+                                                            · {item.name}
+                                                        </div>
+                                                    ))}
                                                 </div>
-                                                <p className="text-white/60 text-xs shrink-0">Rp {item.cost.toLocaleString('id-ID')}</p>
                                             </div>
-                                        ))}
+                                        )}
                                     </div>
 
-                                    {/* Totals */}
-                                    <div className="border-t border-dashed border-white/15 pt-4 space-y-2.5 text-xs font-utility">
-                                        <div className="flex justify-between text-white/50">
-                                            <span>Subtotal</span>
-                                            <span>Rp {price.subtotal.toLocaleString('id-ID')}</span>
-                                        </div>
-                                        <AnimatePresence>
-                                            {price.discountPct > 0 && (
-                                                <motion.div
-                                                    key="discount"
-                                                    initial={{ opacity: 0, height: 0 }}
-                                                    animate={{ opacity: 1, height: 'auto' }}
-                                                    exit={{ opacity: 0, height: 0 }}
-                                                    className="flex justify-between text-emerald-400 font-semibold"
-                                                >
-                                                    <span>Diskon {price.discountPct}% (volume)</span>
-                                                    <span>-Rp {price.discountAmt.toLocaleString('id-ID')}</span>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                    </div>
-
-                                    {/* Grand total */}
-                                    <div className="mt-5 pt-4 border-t-2 border-gold/30 flex justify-between items-baseline">
-                                        <span className="font-display font-bold text-white text-sm">TOTAL ESTIMASI</span>
-                                        <motion.p
-                                            className="text-xl font-bold font-utility text-gold"
-                                        >
-                                            Rp <AnimNum value={price.total} />
-                                        </motion.p>
-                                    </div>
+                                    <div className="my-4 border-t border-gray-100" />
 
                                     {/* Disclaimer */}
-                                    <p className="text-[10px] text-white/20 mt-4 text-center leading-relaxed font-utility">
-                                        * Estimasi bisa berubah sesuai negosiasi final dengan admin.
+                                    <p className="text-[9px] text-white/35 mt-4 text-center leading-relaxed font-utility">
+                                        * Rincian menu final dan harga akan dikonfirmasi admin via WhatsApp.
                                     </p>
-
-                                    {/* Draft stamp */}
-                                    <div className="flex justify-end mt-2">
-                                        <div className="border-2 border-dashed border-gold/25 rounded-full px-4 py-2 text-[9px] font-utility uppercase tracking-widest text-gold/30 rotate-[-12deg]">
-                                            ESTIMASI DRAFT
-                                        </div>
-                                    </div>
                                 </GlassCard>
                             </motion.div>
                         </div>
@@ -570,11 +545,10 @@ export const PackageDetails: React.FC = () => {
                                     Lead ID <span className="text-gold font-utility font-bold">#{submitted.id}</span> telah tercatat. Tim kami akan segera menghubungi Anda.
                                 </p>
 
-                                <div className="glass-card rounded-xl p-4 text-left space-y-1.5 text-xs font-utility text-white/50 mb-7">
+                                <div className="glass-card rounded-xl p-4 border border-white/5 text-left space-y-1.5 text-xs font-utility text-white/50 mb-7">
                                     <div><span className="text-white/30">Nama:</span> {submitted.customer_name}</div>
                                     <div><span className="text-white/30">Paket:</span> {submitted.package_name_snapshot} · {submitted.pax} pax</div>
                                     <div><span className="text-white/30">Tanggal:</span> {submitted.event_date}</div>
-                                    <div><span className="text-white/30">Total:</span> <span className="text-gold">Rp {Number(submitted.total_estimate).toLocaleString('id-ID')}</span></div>
                                 </div>
 
                                 <div className="space-y-3">

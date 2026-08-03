@@ -511,9 +511,9 @@ class DatabaseSeeder extends Seeder
 
         // 10. Create Default Settings
         \App\Models\Setting::create(['key' => 'contact_whatsapp', 'value' => '6281234567890']);
-        \App\Models\Setting::create(['key' => 'contact_email', 'value' => 'info@gardencatering.com']);
+        \App\Models\Setting::create(['key' => 'contact_email', 'value' => 'info@dewandarucatering.com']);
         \App\Models\Setting::create(['key' => 'contact_address', 'value' => 'Jl. Kebun Raya No. 10, Bogor, Jawa Barat']);
-        \App\Models\Setting::create(['key' => 'whatsapp_template', 'value' => "Halo Admin Garden Ledger Catering, saya ingin mengkonfirmasi simulasi estimasi biaya catering saya:\n\n*Nama:* {name}\n*No HP:* {phone}\n*Paket:* {package} ({pax} pax)\n*Tanggal Acara:* {event_date}\n*Lokasi:* {location}\n*Add-ons:* {addons}\n*Estimasi Total:* Rp {total_estimate}\n\nMohon dibantu untuk kelanjutan pemesanan."]);
+        \App\Models\Setting::create(['key' => 'whatsapp_template', 'value' => "Halo Admin Dewandaru Catering, saya ingin mengkonfirmasi simulasi estimasi biaya catering saya:\n\n*Nama:* {name}\n*No HP:* {phone}\n*Paket:* {package} ({pax} pax)\n*Tanggal Acara:* {event_date}\n*Lokasi:* {location}\n*Add-ons:* {addons}\n*Estimasi Total:* Rp {total_estimate}\n\nMohon dibantu untuk kelanjutan pemesanan."]);
         \App\Models\Setting::create(['key' => 'notification_emails', 'value' => 'admin@catering.com,finance@catering.com']);
     }
 }

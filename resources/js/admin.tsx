@@ -125,11 +125,9 @@ const AdminApp: React.FC = () => {
                 >
                     <div className="bg-white p-8 md:p-10 shadow-xl rounded-2xl border border-gray-100">
                         <div className="text-center mb-8">
-                            <div className="w-14 h-14 border-2 border-gold/60 rounded-full flex items-center justify-center font-display text-gold text-2xl font-bold mx-auto mb-4 bg-gold/10">
-                                G
-                            </div>
+                            <img src="/logo.png" className="h-16 w-auto object-contain mx-auto mb-4" alt="Dewandaru Catering Logo" />
                             <h2 className="font-display text-2xl font-bold text-gray-800 uppercase tracking-widest">ADMIN PORTAL</h2>
-                            <p className="text-xs font-utility text-gray-500 mt-2">Garden Ledger Catering CRM</p>
+                            <p className="text-xs font-utility text-gray-500 mt-2">Dewandaru Catering CRM</p>
                         </div>
 
                         <form onSubmit={handleLogin} className="space-y-5">
@@ -191,14 +189,8 @@ const AdminApp: React.FC = () => {
             {/* NAVIGATION SIDEBAR */}
             <aside className="w-64 bg-white shadow-sm border-r border-gray-200 flex flex-col justify-between shrink-0 font-sans z-20 relative">
                 <div>
-                    <div className="p-6 border-b border-gray-100 flex items-center gap-3">
-                        <div className="w-9 h-9 border border-gold/60 rounded-full flex items-center justify-center font-display text-gold text-lg font-bold bg-gold/5">
-                            G
-                        </div>
-                        <div>
-                            <span className="font-display text-sm font-bold tracking-wide block text-gray-800 leading-none">GARDEN LEDGER</span>
-                            <span className="text-[9px] uppercase tracking-widest text-gray-400 font-utility mt-1 block">CRM Panel</span>
-                        </div>
+                    <div className="p-4 border-b border-gray-100 flex items-center justify-center">
+                        <img src="/logo.png" className="h-12 w-auto object-contain" alt="Dewandaru Catering Logo" />
                     </div>
 
                     <div className="p-5 border-b border-gray-100 text-xs font-utility text-gray-600 flex items-center gap-3">

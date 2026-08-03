@@ -8,6 +8,7 @@ interface GlassCardProps {
     glow?: boolean;
     hover?: boolean;
     as?: 'div' | 'section' | 'article';
+    style?: React.CSSProperties;
     onClick?: () => void;
 }
 
@@ -17,16 +18,47 @@ export const GlassCard: React.FC<GlassCardProps> = ({
     variant = 'default',
     glow = false,
     hover = false,
+    as: Tag = 'div',
+    style,
     onClick,
 }) => {
+    // Map variants to css classes
+    const variantClass = {
+        default: 'glass-card',
+        gold:    'glass-card-gold',
+        dark:    'glass-card-dark',
+    }[variant];
+
+    // Glow classes
+    const glowClass = glow
+        ? variant === 'gold'
+            ? 'shadow-[0_0_32px_rgba(173,138,78,0.25)] border-gold/35'
+            : 'shadow-[0_0_32px_rgba(255,255,255,0.08)] border-white/20'
+        : '';
+
+    // Framer motion tag mapping
+    const motionTags = {
+        div: motion.div,
+        section: motion.section,
+        article: motion.article,
+    };
+    const Component = motionTags[Tag] || motion.div;
+
     return (
-        <motion.div
-            className={`rounded-2xl bg-white border border-gray-200 shadow-sm ${className}`}
-            whileHover={hover ? { y: -4, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)' } : undefined}
-            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+        <Component
+            className={`rounded-2xl border ${variantClass} ${glowClass} ${className}`}
+            style={style}
+            whileHover={hover ? {
+                y: -5,
+                boxShadow: variant === 'gold'
+                    ? '0 12px 30px rgba(173, 138, 78, 0.35), 0 0 20px rgba(173, 138, 78, 0.2)'
+                    : '0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.05)',
+                borderColor: variant === 'gold' ? 'rgba(173, 138, 78, 0.6)' : 'rgba(255, 255, 255, 0.25)'
+            } : undefined}
+            transition={{ type: 'spring', stiffness: 300, damping: 22 }}
             onClick={onClick}
         >
             {children}
-        </motion.div>
+        </Component>
     );
 };

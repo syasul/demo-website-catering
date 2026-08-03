@@ -6,150 +6,194 @@
 @theme {
     /* Brand colors */
     --color-forest: #1F2E22;
-    --color-paper: #F5EFDF;
+    --color-paper: #FAF8F5;
     --color-gold: #AD8A4E;
     --color-gold-light: #D4AA6A;
     --color-maroon: #6E2A2A;
     --color-sage: #56705C;
     --color-stempel: #3B3350;
 
-    /* Glass system */
-    --glass-bg: rgba(255,255,255,0.07);
-    --glass-bg-hover: rgba(255,255,255,0.12);
-    --glass-border: rgba(255,255,255,0.13);
-    --glass-border-gold: rgba(173,138,78,0.35);
-    --glass-shadow: 0 8px 32px rgba(0,0,0,0.35);
-    --glass-glow-gold: 0 0 28px rgba(173,138,78,0.25);
-    --glass-glow-maroon: 0 0 28px rgba(110,42,42,0.3);
-
     /* Fonts */
-    --font-display: 'Poppins', sans-serif;
+    --font-display: 'Playfair Display', serif;
     --font-body: 'Poppins', sans-serif;
     --font-utility: 'IBM Plex Mono', monospace;
 }
 
 /* ──────────────────────────────────────
-   Base
+   Base Styles
 ────────────────────────────────────── */
 body {
-    background-color: #0d1b10;
-    color: #f0ece0;
+    background-color: #FAF8F5;
+    color: #1E2022;
+    --color-white: #1E2022;
+    --color-gold: #8C6A30;
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: #1E2022;
+}
+
+.bg-white {
+    background-color: #FFFFFF !important;
+}
+
 /* ──────────────────────────────────────
-   Glassmorphism Card
+   Clean Minimal Card Components
 ────────────────────────────────────── */
 .glass-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: var(--glass-shadow);
+    background: #FFFFFF !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.012) !important;
+    border-radius: 12px;
+    transition: all 0.2s ease !important;
+    color: #1E2022 !important;
+}
+
+.glass-card:hover {
+    border-color: rgba(0, 0, 0, 0.09) !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.025) !important;
 }
 
 .glass-card-gold {
-    background: rgba(173,138,78,0.08);
-    border: 1px solid var(--glass-border-gold);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: var(--glass-glow-gold);
+    background: #FFFFFF !important;
+    border: 1px solid rgba(140, 106, 48, 0.08) !important;
+    box-shadow: 0 2px 12px rgba(140, 106, 48, 0.008) !important;
+    border-radius: 12px;
+    transition: all 0.2s ease !important;
+    color: #1E2022 !important;
+}
+
+.glass-card-gold:hover {
+    border-color: rgba(140, 106, 48, 0.22) !important;
+    box-shadow: 0 4px 18px rgba(140, 106, 48, 0.035) !important;
 }
 
 .glass-card-dark {
-    background: rgba(13,27,16,0.6);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: var(--glass-shadow);
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01) !important;
 }
 
 /* ──────────────────────────────────────
-   Glass Buttons
+   Clean Buttons
 ────────────────────────────────────── */
 .glass-btn {
-    background: rgba(173,138,78,0.15);
-    border: 1px solid var(--glass-border-gold);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: all 0.2s ease;
+    background: #FFFFFF !important;
+    border: 1px solid #D2D2D7 !important;
+    color: #1E2022 !important;
+    transition: all 0.2s ease !important;
+    border-radius: 8px;
+    font-weight: 600;
 }
 
 .glass-btn:hover {
-    background: rgba(173,138,78,0.28);
-    box-shadow: var(--glass-glow-gold);
+    background: #FAF8F5 !important;
+    border-color: #AD8A4E !important;
+    color: #AD8A4E !important;
 }
 
 .glass-btn-primary {
-    background: rgba(173,138,78,0.25);
-    border: 1px solid var(--glass-border-gold);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: all 0.2s ease;
-    color: #D4AA6A;
+    background: #111111 !important;
+    border: 1px solid #111111 !important;
+    color: #FFFFFF !important;
+    transition: all 0.2s ease !important;
+    border-radius: 8px;
+    font-weight: 700;
 }
 
 .glass-btn-primary:hover {
-    background: rgba(173,138,78,0.4);
-    box-shadow: 0 0 28px rgba(173,138,78,0.35);
-    color: #fff;
+    background: #222222 !important;
+    border-color: #222222 !important;
+    color: #FFFFFF !important;
+}
+
+.glass-btn-primary * {
+    color: #FFFFFF !important;
 }
 
 /* ──────────────────────────────────────
-   Text Glow
-────────────────────────────────────── */
-.text-glow-gold {
-    text-shadow: 0 0 20px rgba(173,138,78,0.6);
-}
-
-.text-glow-white {
-    text-shadow: 0 0 15px rgba(255,255,255,0.3);
-}
-
-/* ──────────────────────────────────────
-   Input Glass Style
+   Inputs & Form Elements
 ────────────────────────────────────── */
 .glass-input {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    color: #f0ece0;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #FFFFFF !important;
+    border: 1px solid #D2D2D7 !important;
+    color: #1E2022 !important;
+    border-radius: 8px !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+    width: 100%;
 }
 
 .glass-input:focus {
-    outline: none;
-    border-color: rgba(173,138,78,0.6);
-    box-shadow: 0 0 0 2px rgba(173,138,78,0.15);
+    outline: none !important;
+    border-color: var(--color-gold) !important;
+    box-shadow: 0 0 0 2px rgba(140, 106, 48, 0.15) !important;
 }
 
 .glass-input::placeholder {
-    color: rgba(240,236,224,0.35);
+    color: rgba(30, 32, 34, 0.5) !important;
+}
+
+/* Checkbox Style */
+.glass-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #D2D2D7;
+    background: #FFFFFF;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+
+.glass-checkbox:checked {
+    background: #AD8A4E;
+    border-color: #AD8A4E;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23fff' stroke-width='2.5' d='M3 8l3.5 3.5 6-7'/%3e%3c/svg%3e");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Range input styling */
+input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    background: #EAEAEA;
+    height: 6px;
+    border-radius: 9999px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #111111;
+    border-radius: 50%;
+    margin-top: -7px;
+    transition: background-color 0.2s;
+}
+input[type=range]::-webkit-slider-thumb:hover {
+    background: #AD8A4E;
 }
 
 /* ──────────────────────────────────────
-   Animated Blob (via Framer Motion, but fallback CSS too)
+   Background Blob Disabler
 ────────────────────────────────────── */
 .blob {
-    position: absolute;
-    border-radius: 9999px;
-    filter: blur(80px);
-    opacity: 0.35;
-    pointer-events: none;
+    display: none !important;
 }
 
 /* ──────────────────────────────────────
-   Perforated receipt border
-────────────────────────────────────── */
-.border-dashed-tear {
-    border-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='4' viewBox='0 0 12 4'%3e%3cpath d='M0 4c2 0 2-4 4-4s2 4 4 4 2-4 4-4v4z' fill='%23AD8A4E'/%3e%3c/svg%3e") 0 0 100% repeat;
-}
-
-/* ──────────────────────────────────────
-   Animations
+   Animations & Skeleton
 ────────────────────────────────────── */
 @keyframes slideDown {
     from { opacity: 0; transform: translateY(-10px); }
@@ -174,74 +218,32 @@ body {
     animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Skeleton loading */
 .skeleton {
-    background: rgba(173,138,78,0.07);
+    background: #EAEAEA;
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     border-radius: 4px;
 }
 
-/* Range input styling */
-input[type=range] {
-    -webkit-appearance: none;
-    appearance: none;
-    background: transparent;
-    cursor: pointer;
-}
-input[type=range]::-webkit-slider-runnable-track {
-    background: rgba(255,255,255,0.15);
-    height: 6px;
-    border-radius: 9999px;
-}
-input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: var(--color-gold);
-    border-radius: 50%;
-    margin-top: -7px;
-    box-shadow: 0 0 8px rgba(173,138,78,0.5);
-    transition: box-shadow 0.2s;
-}
-input[type=range]::-webkit-slider-thumb:hover {
-    box-shadow: 0 0 16px rgba(173,138,78,0.8);
-}
-input[type=range]::-moz-range-track {
-    background: rgba(255,255,255,0.15);
-    height: 6px;
-    border-radius: 9999px;
-}
-input[type=range]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: var(--color-gold);
-    border-radius: 50%;
-    border: none;
-    box-shadow: 0 0 8px rgba(173,138,78,0.5);
+/* ──────────────────────────────────────
+   Footer & Navigation
+────────────────────────────────────── */
+header nav a {
+    font-family: 'Montserrat', sans-serif !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    font-size: 0.75rem !important;
+    color: #555555 !important;
 }
 
-/* Checkbox glass */
-.glass-checkbox {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 1px solid rgba(173,138,78,0.4);
-    background: rgba(255,255,255,0.06);
-    border-radius: 3px;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: all 0.15s ease;
-}
-.glass-checkbox:checked {
-    background: rgba(173,138,78,0.5);
-    border-color: var(--color-gold);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23fff' stroke-width='2.5' d='M3 8l3.5 3.5 6-7'/%3e%3c/svg%3e");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+header nav a:hover,
+header nav a.text-gold {
+    color: #111111 !important;
 }
 
-
+footer.glass-card-dark {
+    background-color: #FFFFFF !important;
+    border-top: 1px solid #EAEAEA !important;
+    box-shadow: none !important;
+}

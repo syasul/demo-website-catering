@@ -32,16 +32,17 @@ export const GalleryGrid: React.FC = () => {
         <div className="relative px-6 md:px-12 py-12 max-w-7xl mx-auto overflow-x-hidden">
             <AnimatedBlob color="#AD8A4E" size={400} x="60%" y="-5%" delay={0} opacity={0.12} />
 
+            {/* Header */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-center mb-12"
+                className="text-center mb-12 mt-12"
             >
                 <span className="text-xs uppercase tracking-widest text-gold font-semibold font-utility">Dokumentasi</span>
                 <h1 className="font-display text-3xl md:text-5xl font-bold text-white mt-2">Galeri Event Kami</h1>
-                <p className="text-white/40 mt-3 text-sm max-w-lg mx-auto">
-                    Rekam jejak acara-acara berkesan yang telah kami layani dengan penuh dedikasi.
+                <p className="text-white/40 mt-3 text-xs uppercase tracking-widest font-utility">
+                    Rekam jejak acara-acara berkesan yang telah kami layani
                 </p>
             </motion.div>
 
@@ -62,35 +63,42 @@ export const GalleryGrid: React.FC = () => {
                         <motion.div
                             key={img.id}
                             variants={fadeUp}
-                            className="break-inside-avoid mb-4 relative group overflow-hidden rounded-2xl glass-card border border-white/10 cursor-pointer"
+                            className="break-inside-avoid mb-4 relative group overflow-hidden rounded-2xl glass-card border border-white/10 cursor-pointer shadow-sm"
                             onClick={() => setLightbox(img)}
-                            whileHover={{ scale: 1.01 }}
+                            whileHover={{ scale: 1.015 }}
                             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                         >
                             <img
                                 src={img.image}
                                 alt={img.title}
-                                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 border border-gold/10 rounded-2xl"
                                 loading="lazy"
                             />
-                            {/* Hover overlay */}
-                            <div className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                style={{ background: 'rgba(13,27,16,0.85)' }}>
+                            
+                            {/* Premium White Frosted Hover overlay */}
+                            <div 
+                                className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+                                style={{ 
+                                    background: 'rgba(255, 255, 255, 0.92)',
+                                    backdropFilter: 'blur(8px)',
+                                    WebkitBackdropFilter: 'blur(8px)'
+                                }}
+                            >
                                 <motion.div
                                     initial={{ y: 10, opacity: 0 }}
                                     whileInView={{ y: 0, opacity: 1 }}
                                     className="flex justify-between items-end"
                                 >
                                     <div>
-                                        <h4 className="font-semibold text-white text-sm">{img.title}</h4>
+                                        <h4 className="font-display font-bold text-[#111111] text-sm uppercase tracking-wide">{img.title}</h4>
                                         {img.event_date && (
-                                            <p className="text-[10px] text-white/40 font-utility mt-0.5">
+                                            <p className="text-[9px] text-gold font-utility uppercase tracking-wider mt-1.5 font-bold">
                                                 {new Date(img.event_date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long' })}
                                             </p>
                                         )}
                                     </div>
-                                    <div className="w-8 h-8 rounded-full glass-card border border-white/20 flex items-center justify-center text-white/70">
-                                        <ZoomIn size={14} />
+                                    <div className="w-8 h-8 rounded-full border border-gold/40 flex items-center justify-center text-gold/80 hover:text-gold transition-colors">
+                                        <ZoomIn size={13} />
                                     </div>
                                 </motion.div>
                             </div>
@@ -99,7 +107,7 @@ export const GalleryGrid: React.FC = () => {
                 </motion.div>
             )}
 
-            {/* Lightbox */}
+            {/* Lightbox Modal */}
             <AnimatePresence>
                 {lightbox && (
                     <motion.div
@@ -121,19 +129,19 @@ export const GalleryGrid: React.FC = () => {
                         >
                             <button
                                 onClick={() => setLightbox(null)}
-                                className="absolute -top-4 -right-4 z-10 w-9 h-9 rounded-full glass-card border border-white/20 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                                className="absolute -top-4 -right-4 z-10 w-9 h-9 rounded-full glass-card border border-white/20 flex items-center justify-center text-white/70 hover:text-white transition-colors animate-pulse"
                             >
                                 <X size={18} />
                             </button>
                             <img
                                 src={lightbox.image}
                                 alt={lightbox.title}
-                                className="w-full max-h-[75vh] object-contain rounded-2xl"
+                                className="w-full max-h-[75vh] object-contain rounded-2xl border border-gold/30 shadow-2xl"
                             />
                             <div className="mt-4 text-center">
-                                <p className="font-semibold text-white">{lightbox.title}</p>
+                                <p className="font-display font-bold text-white text-base tracking-wide uppercase">{lightbox.title}</p>
                                 {lightbox.event_date && (
-                                    <p className="text-[11px] text-white/40 font-utility mt-1">
+                                    <p className="text-[10px] text-gold font-utility uppercase tracking-widest mt-2 font-bold">
                                         {new Date(lightbox.event_date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
                                     </p>
                                 )}
