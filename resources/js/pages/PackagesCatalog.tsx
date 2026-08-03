@@ -72,7 +72,7 @@ export const PackagesCatalog: React.FC = () => {
                                     onClick={() => setSelectedCategory(cat.id ?? null)}
                                     className={`px-4 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all duration-200 border ${
                                         active
-                                            ? 'bg-[#111111] border-[#111111] text-white shadow-sm'
+                                            ? 'bg-[#111111] border-[#111111] text-[#FFFFFF] shadow-sm'
                                             : 'bg-white border-gray-200 text-gray-500 hover:text-gray-900'
                                     }`}
                                     whileTap={{ scale: 0.95 }}
