@@ -243,11 +243,10 @@ export const Home: React.FC = () => {
                     {problems.map((p, i) => (
                         <motion.div key={i} variants={fadeUp}>
                             <GlassCard className="p-8 h-full" hover>
-                                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                                    style={{ background: 'rgba(140, 106, 48, 0.08)', border: '1px solid rgba(140, 106, 48, 0.2)' }}>
-                                    <span className="text-gold">{p.icon}</span>
+                                <div className="flex items-center gap-3.5 mb-4">
+                                    <span className="text-gold shrink-0">{p.icon}</span>
+                                    <h3 className="font-display text-lg font-semibold text-white leading-snug">{p.title}</h3>
                                 </div>
-                                <h3 className="font-display text-lg font-semibold text-white mb-3">{p.title}</h3>
                                 <p className="text-white/50 text-sm leading-relaxed">{p.desc}</p>
                             </GlassCard>
                         </motion.div>
@@ -276,7 +275,7 @@ export const Home: React.FC = () => {
                         <GlassCard variant="default" className="anime-bento-card opacity-0 md:col-span-2 lg:col-span-2 lg:row-span-2 p-8 flex flex-col justify-between" hover>
                             <div className="space-y-6">
                                 <div className="flex items-center gap-3">
-                                    <span className="text-gold bg-gold/10 p-2.5 rounded-xl border border-gold/25">
+                                    <span className="text-gold">
                                         <UtensilsCrossed size={20} />
                                     </span>
                                     <div>

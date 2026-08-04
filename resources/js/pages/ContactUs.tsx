@@ -1,18 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Send, CheckCircle2, Clock } from 'lucide-react';
+import { Send, CheckCircle2 } from 'lucide-react';
 import { GlassCard } from '../components/GlassCard';
 import { GlassButton } from '../components/GlassButton';
-
-const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
-const fadeUp = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } } };
-
-const contacts = [
-    { icon: <Phone size={16} />, label: 'WhatsApp', value: '+62 812-3456-7890', href: 'https://wa.me/6281234567890' },
-    { icon: <Mail size={16} />, label: 'Email', value: 'info@dewandarucatering.com', href: 'mailto:info@dewandarucatering.com' },
-    { icon: <MapPin size={16} />, label: 'Alamat', value: 'Jl. Kebun Raya No. 10, Bogor, Jawa Barat', href: undefined },
-    { icon: <Clock size={16} />, label: 'Jam Operasional', value: 'Senin – Sabtu: 08.00 – 17.00 WIB\nMinggu: 09.00 – 14.00 WIB', href: undefined },
-];
 
 export const ContactUs: React.FC = () => {
     const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
@@ -54,28 +44,29 @@ export const ContactUs: React.FC = () => {
     };
 
     return (
-        <div className="relative overflow-x-hidden pb-24">
-            <div className="max-w-6xl mx-auto px-6 md:px-12 py-12 relative z-10">
+        <div className="relative overflow-x-hidden pb-24 bg-[#F9F8F6]">
+            <div className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-36 pb-12 relative z-10">
                 
+                {/* Header / Title Section (Spans full width, centered) */}
+                <div className="text-center mb-16">
+                    <span className="text-xs uppercase tracking-widest text-gold font-semibold font-utility">Hubungi Kami</span>
+                    <h1 className="font-display text-3xl md:text-5xl font-bold text-forest mt-2 mb-3">Send Us Message</h1>
+                    <p className="text-gray-500 text-xs uppercase tracking-widest font-utility">Respon Cepat via Formulir RSVP</p>
+                </div>
+
                 {/* 2-Column Contact Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch mt-12 mb-20">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch mb-20">
                     
                     {/* RSVP Form Card (Left) */}
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        className="lg:col-span-7"
+                        className="lg:col-span-7 flex flex-col"
                     >
-                        <div className="mb-8">
-                            <span className="text-xs uppercase tracking-widest text-gold font-semibold font-utility">Hubungi Kami</span>
-                            <h1 className="font-display text-3xl md:text-5xl font-bold text-white mt-2 mb-3">Send Us Message</h1>
-                            <p className="text-white/40 text-xs uppercase tracking-widest font-utility">Respon Cepat via Formulir RSVP</p>
-                        </div>
-
-                        <GlassCard variant="gold" className="p-8 md:p-10 relative overflow-hidden" glow>
-                            
-
+                        <div className="bg-white border border-gold/15 rounded-3xl p-8 md:p-10 shadow-sm relative overflow-hidden flex-grow flex flex-col justify-between">
+                            {/* Decorative background element */}
+                            <div className="absolute -right-16 -top-16 w-32 h-32 bg-gold/5 rounded-full blur-xl pointer-events-none" />
 
                             {success ? (
                                 <motion.div
@@ -83,118 +74,98 @@ export const ContactUs: React.FC = () => {
                                     animate={{ opacity: 1, scale: 1 }}
                                     className="text-center py-12 space-y-6"
                                 >
-                                    <CheckCircle2 size={48} className="text-emerald-500 mx-auto" />
-                                    <h3 className="font-display text-2xl font-bold text-white">Pesan Terkirim!</h3>
-                                    <p className="text-white/50 text-xs leading-relaxed max-w-sm mx-auto">
+                                    <CheckCircle2 size={48} className="text-gold mx-auto" />
+                                    <h3 className="font-display text-2xl font-bold text-forest">Pesan Terkirim!</h3>
+                                    <p className="text-gray-500 text-xs leading-relaxed max-w-sm mx-auto">
                                         Terima kasih telah menghubungi kami. Tim administrasi kami akan membalas pesan Anda secepatnya.
                                     </p>
-                                    <GlassButton variant="glass" size="sm" onClick={() => setSuccess(false)}>
+                                    <button 
+                                        onClick={() => setSuccess(false)}
+                                        className="bg-gold text-forest font-bold py-2.5 px-6 rounded-xl text-xs tracking-wider uppercase hover:bg-gold-light transition-colors cursor-pointer"
+                                    >
                                         Kirim Pesan Lain
-                                    </GlassButton>
+                                    </button>
                                 </motion.div>
                             ) : (
-                                <form onSubmit={handleSubmit} className="space-y-8 mt-6">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                                <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <label className="text-[10px] uppercase text-white/40 font-utility tracking-widest block font-bold">Nama *</label>
+                                            <label className="text-[10px] uppercase text-gold font-utility tracking-widest block font-bold">Nama *</label>
                                             <input
                                                 type="text"
                                                 value={form.name}
                                                 onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
                                                 placeholder="Nama lengkap Anda..."
-                                                className={`glass-input px-3.5 py-2.5 w-full text-sm placeholder-white/20 ${errors.name ? 'border-red-500/50' : ''}`}
+                                                className={`w-full bg-[#F9F8F6] border rounded-xl px-3.5 py-2.5 text-sm text-forest placeholder-gray-400 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold focus:bg-white transition-all duration-200 ${errors.name ? 'border-red-500/50' : 'border-gold/10'}`}
                                             />
-                                            {errors.name && <p className="text-[9px] text-red-500">{errors.name}</p>}
+                                            {errors.name && <p className="text-[9px] text-red-500 font-semibold">{errors.name}</p>}
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[10px] uppercase text-white/40 font-utility tracking-widest block font-bold">No. WhatsApp *</label>
+                                            <label className="text-[10px] uppercase text-gold font-utility tracking-widest block font-bold">No. WhatsApp *</label>
                                             <input
                                                 type="text"
                                                 value={form.phone}
                                                 onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
                                                 placeholder="0812xxx..."
-                                                className={`glass-input px-3.5 py-2.5 w-full text-sm placeholder-white/20 ${errors.phone ? 'border-red-500/50' : ''}`}
+                                                className={`w-full bg-[#F9F8F6] border rounded-xl px-3.5 py-2.5 text-sm text-forest placeholder-gray-400 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold focus:bg-white transition-all duration-200 ${errors.phone ? 'border-red-500/50' : 'border-gold/10'}`}
                                             />
-                                            {errors.phone && <p className="text-[9px] text-red-500">{errors.phone}</p>}
+                                            {errors.phone && <p className="text-[9px] text-red-500 font-semibold">{errors.phone}</p>}
                                         </div>
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-[10px] uppercase text-white/40 font-utility tracking-widest block font-bold">Email</label>
+                                        <label className="text-[10px] uppercase text-gold font-utility tracking-widest block font-bold">Email</label>
                                         <input
                                             type="email"
                                             value={form.email}
                                             onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
                                             placeholder="email@contoh.com..."
-                                            className="glass-input px-3.5 py-2.5 w-full text-sm placeholder-white/20"
+                                            className="w-full bg-[#F9F8F6] border border-gold/10 rounded-xl px-3.5 py-2.5 text-sm text-forest placeholder-gray-400 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold focus:bg-white transition-all duration-200"
                                         />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-[10px] uppercase text-white/40 font-utility tracking-widest block font-bold">Detail Pesan *</label>
+                                        <label className="text-[10px] uppercase text-gold font-utility tracking-widest block font-bold">Detail Pesan *</label>
                                         <textarea
                                             value={form.message}
                                             onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
                                             rows={4}
                                             placeholder="Ceritakan kebutuhan catering / dekorasi acara Anda..."
-                                            className={`glass-input px-3.5 py-2.5 w-full text-sm placeholder-white/20 resize-none ${errors.message ? 'border-red-500/50' : ''}`}
+                                            className={`w-full bg-[#F9F8F6] border rounded-xl px-3.5 py-2.5 text-sm text-forest placeholder-gray-400 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold focus:bg-white transition-all duration-200 resize-none ${errors.message ? 'border-red-500/50' : 'border-gold/10'}`}
                                         />
-                                        {errors.message && <p className="text-[9px] text-red-500">{errors.message}</p>}
+                                        {errors.message && <p className="text-[9px] text-red-500 font-semibold">{errors.message}</p>}
                                     </div>
 
-                                    <GlassButton variant="primary" size="lg" type="submit" disabled={loading} className="w-full mt-4">
-                                        <Send size={15} />
+                                    <motion.button
+                                        whileHover={{ scale: 1.01 }}
+                                        whileTap={{ scale: 0.99 }}
+                                        type="submit"
+                                        disabled={loading}
+                                        className="w-full bg-gold text-[#1F2E22] font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm hover:bg-gold-light cursor-pointer font-utility text-[10px] tracking-widest uppercase mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        <Send size={14} className="text-[#1F2E22]" />
                                         {loading ? 'MENGIRIM...' : 'KIRIM FORMULIR'}
-                                    </GlassButton>
+                                    </motion.button>
                                 </form>
                             )}
-                        </GlassCard>
+                        </div>
                     </motion.div>
 
                     {/* Styled Invitation Image Frame (Right) */}
                     <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        className="lg:col-span-5 relative pr-0 lg:pr-6 self-stretch min-h-[300px] lg:min-h-[500px] mt-10 lg:mt-0"
+                        className="lg:col-span-5 relative self-stretch min-h-[300px] lg:min-h-[500px] mt-10 lg:mt-0 group"
                     >
+                        <div className="absolute inset-0 border-4 border-double border-gold/20 translate-x-3 translate-y-3 rounded-2xl pointer-events-none transition-transform duration-500 group-hover:translate-x-1 group-hover:translate-y-1" />
                         <img
                             src="https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=800"
                             alt="Contact Catering Presentation"
-                            className="relative w-full h-full object-cover border border-gray-100 rounded-2xl shadow-sm min-h-[300px] lg:min-h-[500px]"
+                            className="relative w-full h-full object-cover rounded-2xl shadow-lg border border-gold/10 transition-transform duration-500 group-hover:scale-[0.99]"
                         />
                     </motion.div>
                 </div>
-
-                {/* Bottom Row Contact Info (Bento Cards) */}
-                <motion.div
-                    variants={stagger}
-                    initial="hidden"
-                    animate="show"
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 border-t border-white/10 pt-16"
-                >
-                    {contacts.map((c, i) => (
-                        <motion.div key={i} variants={fadeUp}>
-                            <GlassCard className="p-6 h-full flex flex-col justify-between" hover>
-                                <div className="flex items-start gap-4">
-                                    <div className="w-10 h-10 rounded-xl glass-card-gold border border-gold/20 flex items-center justify-center text-gold shrink-0">
-                                        {c.icon}
-                                    </div>
-                                    <div>
-                                        <p className="text-[10px] text-white/40 font-utility uppercase tracking-wider mb-1">{c.label}</p>
-                                        {c.href ? (
-                                            <a href={c.href} target="_blank" rel="noreferrer" className="text-white/80 text-xs hover:text-gold transition-colors font-semibold">
-                                                {c.value}
-                                            </a>
-                                        ) : (
-                                            <p className="text-white/70 text-xs font-semibold whitespace-pre-line leading-relaxed">{c.value}</p>
-                                        )}
-                                    </div>
-                                </div>
-                            </GlassCard>
-                        </motion.div>
-                    ))}
-                </motion.div>
 
             </div>
         </div>

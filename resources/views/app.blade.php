@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dewandaru Catering — Estimasi Harga Praktis & Elegan</title>
     <meta name="description" content="Simulasikan dan hitung estimasi biaya catering pernikahan & event Anda secara instan dan transparan dengan kalkulator self-service kami.">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/favicon.png?v=2">
+    <link rel="shortcut icon" href="/favicon.png?v=2">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

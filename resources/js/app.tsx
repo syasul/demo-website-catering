@@ -80,17 +80,17 @@ const Navbar: React.FC = () => {
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
                 scrolled
-                    ? 'glass-card-dark border-b border-white/10 py-3'
-                    : 'bg-transparent py-5'
+                    ? 'glass-card-dark border-b border-white/10 py-2 md:py-3'
+                    : 'bg-transparent py-3 md:py-5'
             }`}
         >
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
                 {/* Logo */}
                 <Link to="/" className="flex items-center gap-3 group">
                     <img 
-                        src="/logo.png" 
+                        src="/logo.png?v=2" 
                         className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 ${
-                            scrolled ? 'h-14 md:h-16' : 'h-20 md:h-24'
+                            scrolled ? 'h-10 sm:h-12 md:h-14 lg:h-16' : 'h-14 sm:h-16 md:h-20 lg:h-24'
                         }`} 
                         alt="Dewandaru Catering Logo" 
                     />
